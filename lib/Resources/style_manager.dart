@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+import '../MainImports/main_imports.dart';
 import 'font_manager.dart';
 
 class StyleManager {
@@ -35,4 +36,31 @@ class StyleManager {
         fontSize: FontSize.textHeader(context),
         fontWeight: FontWeight.w700);
   }
+
+  static Theme selectDateTime(context,child)=>Theme(
+    data:
+    Theme.of(context).copyWith(
+      colorScheme: ColorScheme.light(
+        primary: ColorManager.primaryColor, // <-- SEE HERE
+        onPrimary: Colors.white, // <-- SEE HERE
+        onSurface: ColorManager.grayColor, // <-- SEE HERE
+      ),
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+              textStyle: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.normal,
+                fontSize: 12,),
+              primary: Colors.white, // color of button's letters
+              backgroundColor: ColorManager.primaryColor,
+              // Background color
+              shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                      style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(50)))),
+    ),
+    child: child!,
+  );
 }

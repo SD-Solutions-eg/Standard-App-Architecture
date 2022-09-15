@@ -18,7 +18,20 @@ dependencies:
   flutter_bloc:
   #========>for localization
   easy_localization:
-
+  #  to Launch links
+  url_launcher: ^6.0.10
+  #  Qr Code Scanner
+  qr_code_scanner: ^0.6.0
+  #=====for choose image from gallery or tack an image from camera
+  image_picker: ^0.8.5+3
+  #  ===used for pick any file from your device
+  file_picker: ^4.6.1
+  #========>for onBoarding page
+  smooth_page_indicator:
+  #=== forMate date and time =========
+  intl:
+  #=============pdf viewer======================
+  flutter_cached_pdfview: ^0.4.1
 
 dev_dependencies:
   flutter_test:

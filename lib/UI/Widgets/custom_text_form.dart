@@ -54,14 +54,14 @@ class MyTextForm extends StatelessWidget {
             textInputAction: TextInputAction.next,
             onEditingComplete: () => FocusScope.of(context).nextFocus(),
             validator: (String? value) {
-              // validate!();
-              // if (value!.isEmpty) {
-              //   return "لا يجب ان يكون الحقل فارغً !";
-              // }
-              // if (validate != null) {
-              //   return validate!();
-              // }
-              // return null;
+              validate!();
+              if (value!.isEmpty) {
+                return "لا يجب ان يكون الحقل فارغً !";
+              }
+              if (validate != null) {
+                return validate!();
+              }
+              return null;
             },
             keyboardType: keyboardType,
             onTap: onTap,

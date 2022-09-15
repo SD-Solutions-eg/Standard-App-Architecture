@@ -76,23 +76,23 @@ class DioHelper {
       'Authorization': token,
     };
 
-    return dio.post(url,
-        data: data,
-        options: Options(
-          followRedirects: false, //new add error dio 302
-          validateStatus: (state) => state! < 500,
-        ));
-    // try {
-    //   final result = await InternetAddress.lookup('example.com');
-    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    //
-    //   }
-    //   else{
-    //     return {};
-    //   }
-    // } on SocketException catch (error) {
-    //   throw Exception(["Please check your internet connection"]);
-    // }
+
+    try {
+      final result = await InternetAddress.lookup('example.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return dio.post(url,
+            data: data,
+            options: Options(
+              followRedirects: false, //new add error dio 302
+              validateStatus: (state) => state! < 500,
+            ));
+      }
+      else{
+        return {};
+      }
+    } on SocketException catch (error) {
+      throw Exception(["Please check your internet connection"]);
+    }
   }
 
   static Future<Response> putData({

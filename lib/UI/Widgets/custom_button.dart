@@ -1,12 +1,14 @@
-
+// ignore_for_file: must_be_immutable
 
 import '../../MainImports/main_imports.dart';
 
 class DefaultButton extends StatelessWidget {
   Color? background;
+  Color? textColor;
 
   bool isWidget = true;
-  final double radius = 5.0;
+  double? radius;
+
   double? btnWidth;
   double? btnHeight;
 
@@ -18,21 +20,23 @@ class DefaultButton extends StatelessWidget {
 
   DefaultButton(
       {Key? key,
-      required this.function,
-      this.text,
-      this.background,
-      this.btnWidth,
-      required this.isWidget,
-      this.fontSize,
-      this.fontWeight,
-      this.btnHeight,
-      this.widget})
+        required this.function,
+        this.text,
+        this.background,
+        this.btnWidth,
+        this.textColor,
+        required this.isWidget,
+        this.fontSize,
+        this.fontWeight,
+        this.radius,
+        this.btnHeight,
+        this.widget})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: btnHeight ?? height(context) * .07,
+      height: btnHeight ?? height(context) * .08,
       width: btnWidth ?? width(context),
       // margin: EdgeInsets.symmetric(vertical: height(context) * .015),
       padding: EdgeInsets.symmetric(
@@ -45,19 +49,39 @@ class DefaultButton extends StatelessWidget {
         child: !isWidget
             ? widget
             : Text(
-                text!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: fontSize ?? FontSize.textHeader(context),
-                    fontWeight: fontWeight),
-              ),
+          text!,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              color: textColor ?? Colors.white,
+              fontSize: fontSize ?? FontSize.textHeader(context),
+              fontWeight: fontWeight),
+        ),
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
-          radius,
+          radius ?? 10.0,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.15),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: const Offset(0, 3), //
+          )
+        ],
+        gradient: LinearGradient(
+            colors: [
+              background ?? ColorManager.primaryColor,
+              background ?? ColorManager.orangeColor,
+            ],
+            stops: const [
+              0.0,
+              0.8
+            ],
+            begin: FractionalOffset.topLeft,
+            end: FractionalOffset.bottomRight,
+            tileMode: TileMode.repeated),
         color: background,
       ),
     );
